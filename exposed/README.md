@@ -6,7 +6,7 @@ https://github.com/JetBrains/Exposed
 
 ## Database 생성
 
-Hikari 데이터소스를 이용해서 데이티베이스를 생성한다  
+Hikari 데이터소스를 이용해서 데이터베이스를 생성한다  
 
 ```kt
 
