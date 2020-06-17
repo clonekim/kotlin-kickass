@@ -63,7 +63,7 @@ class TodoService {
 둘 중 하나를 선별해야 한다.
 실제 ORM이 작성하는 쿼리를 보면 문자열로 시간컬럼에 넣기 때문에  
 ALTER SESSION ALTER SESSION SET NSL_DATE_FORMAT 으로 시간포맷을 맞춰야 할 필요가 있다  
-그렇치 않으면 TO__DATE로 감싸야 하는데 이부분은 exposed의 확장하는 구조이다.  
+그렇치 않고 TO_DATE로 감싸야 하는 SQL를 생성하고 싶다면 exposed의 확장하면 된다.
 
 
 autoIncrement 를 사용 시 오라클인 경우 시퀀스를 만들어준다.  
