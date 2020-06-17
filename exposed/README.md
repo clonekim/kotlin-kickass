@@ -1,7 +1,7 @@
 # Exposed
 
 https://github.com/JetBrains/Exposed  
-젯브레인즈가 만든 경량 ORM이다
+[Jetbrains](https://www.jetbrains.com/) 가 만든 경량 ORM이다
 
 
 ## Database 생성
