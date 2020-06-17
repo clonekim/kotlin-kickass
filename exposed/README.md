@@ -41,7 +41,7 @@ fun database(hConf: ApplicationConfig) {
 ```
 ## Mapping
 
-```kt 
+```kt
 
 class TodoService {
 
@@ -70,7 +70,7 @@ autoIncrement 를 사용 시 오라클인 경우 시퀀스를 만들어준다.
 만약 uniqueIndex로만 사용하고 직접 시퀀스를 다뤄야 직접 작성 할 수 있다.  
 
 ```kt 
-    companion object {
+  companion object {
 
     val seq = Sequence(
       name = "TODO_ID_SEQ",
@@ -108,7 +108,7 @@ data class Todo(
 ```
 
 모든 쿼리의 실행은 반드시 transaction 블럭안에서 실행되어진다  
-TodoService.kt*
+
 
 ```kt 
 import org.jetbrains.exposed.sql.*
