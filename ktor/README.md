@@ -8,9 +8,9 @@ https://ktor.io/
 아래의 두가지 방법을 제공한다  
 
 1. [start.ktor.io](https://ktor.io/quickstart/generator.html)
- ![](/img/picture149-2.png) 
+ ![](img/picture149-2.png) 
 1. IntelliJ IDE
-![](/img/picture149-1.png)
+![](img/picture149-1.png)
 
 참고로 현재 start.ktor.io를 통해 작성 프로젝트 소스는 모듈 기반으로 작성되어 있고  
 HOCON (Human-Optimized Config Object Notation) 을 사용한다.  
@@ -80,7 +80,7 @@ fun main() {
 모듈기반으로 작성하는 것과 차이가 나는 것 같지만  
 embeddedServer는 내부적으로 모듈을 만드는 팩토리메서드이다  
 
-![](/img/picture740-1.png)
+![](img/picture740-1.png)
 
 ## Ktor server introduction and key concepts
 
