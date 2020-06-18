@@ -177,8 +177,52 @@ println("배열마지막은 ${data[2]}")
  println(b!!.length) //!!를 사용하면 NullPointException를 발생시킴
 ```
 
+## 형변환
+
+```10
+var i = 10
+var j:Long = i.toLong()
+```
+
+### 배열
+
+> arrayOf나 xxxArrayOf를 사용한다  
+xxx는 int, long, byte가 있다 
+arrayOfNulls는 null의 문자배열을 만든다 
+
+```kt
+var data = arrayOf(1,2,3)
+var data = intArrayOf(1,2,3)
+var data:Array<String?> = arrayOfNulls(5)
+
+//람다를 이용해서 초기화가 가능
+var data = Array(5, {i -> i*3}) //[0,3,6,9,12]
+```
+
+### [Collection](https://kotlinlang.org/docs/reference/collections-overview.html)
 
 
+## Receivers
+
+```kt
+class Car(val horsepowers: Int)
+
+val boast: Car.() -> String = { "I'm a car with $horsepowers HP!"}
+
+val car = Car(120)
+println(car.boast())
+```
+
+
+## [Scoped 함수]
+
+Closeable 인터페이스를 구현한 경우 안전하게 use를 사용해서 리소스를 close할 수 있다.  
+```kt
+File("/home/aasmund/test.txt").inputStream().use {
+     val bytes = it.readBytes()
+     println(bytes.size)
+}
+```
 
 ## [Java와 함께 쓰기](https://kotlinlang.org/docs/reference/java-to-kotlin-interop.html)
 
