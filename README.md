@@ -172,8 +172,8 @@ println("배열마지막은 ${data[2]}")
  b = null //ok
  
  b.length //컴파일에러
- print(b?.length) //?를 사용해서 작성하고 a가 null 이면 null을 반환  
- println(b?.length ?: 0) //a가 null이면 0을 반환
+ print(b?.length) //?를 사용해서 작성하고 b가 null 이면 null을 반환  
+ println(b?.length ?: 0) //b가 null이면 0을 반환
  println(b!!.length) //!!를 사용하면 NullPointException를 발생시킴
 ```
 
