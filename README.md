@@ -42,7 +42,10 @@ java -jar HelloWorld.jar
  } else {
    b
  }
+ 
+ val c = if (조건) a else b
 ```
+
 ```kt
 val c = if(조건) a else b
 ```
@@ -177,7 +180,7 @@ println("배열마지막은 ${data[2]}")
  println(b!!.length) //!!를 사용하면 NullPointException를 발생시킴
 ```
 
-## 형변환
+### 형변환
 
 ```10
 var i = 10
@@ -202,7 +205,130 @@ var data = Array(5, {i -> i*3}) //[0,3,6,9,12]
 ### [Collection](https://kotlinlang.org/docs/reference/collections-overview.html)
 
 
-## Receivers
+
+## Scoped 함수
+
+Closeable 인터페이스를 구현한 경우 안전하게 use를 사용해서 리소스를 close할 수 있다.  
+```kt
+File("/home/aasmund/test.txt").inputStream().use {
+     val bytes = it.readBytes()
+     println(bytes.size)
+}
+```
+
+```
+ val a:String? = doSomething()
+ a?.let {
+    //Todo
+ }
+ ```
+ 
+|scoped function| context   | return   | 선택가이드|
+|---|---|---|---|
+| let   | it   | 마지막 표현식  | 널이아닌 객체에 대한 코드실행, 로컬범위에서 실행|
+| run   | this   | 마지막 표현식  |객체를 초기화화면서 결과값 처리, 단순 표현식이 필요할 경우|
+| apply   | this   |객체자신   | 초기화|
+| also   | it   |객체자신   |  부수적인 효과|
+| with   | this   |마지막 표현식, 함수의 인자로 객체가 필요함   | 객체의 함수 호출을 구룹핑|
+
+
+## Class
+
+클래스 내부에 선언한 멤버변수는 코틀린에서는 프로퍼티라고 부른다.  
+선언된 프로퍼티는 get, set를 가진다  
+아래 예제는 단 sum은 읽기전용으로 get만 가질 수 있도록 하였다.
+```kt
+class A {
+ var a: Int = 0
+ var b: Int = b
+ 
+ val sum: Int
+    get() {
+       return a + b
+    }
+}
+
+var a = A()
+a.a = 1
+a.b = 2
+println(a.sum)
+```
+
+```
+class A(var a:Int, var b:Int) {
+ val sum: Int
+    get() {
+       return a + b
+    }
+}
+
+class A(private val a:Int, private val b:Int) {
+ val sum: Int
+    get() {
+       return a + b
+    }
+}
+
+```
+
+## Data Class
+data 클래스를 사용하면 부가적으로 아래의 일 처리한다
+- equals
+- toString
+- 프로퍼터의 순서를 번호로 하는 componentN()함수 생성
+
+## Companion Objet
+
+자바와 달리 static 키워드가 존재하지 않는다
+
+```kt
+class A {
+   companion object {
+      val hello = "hello world"
+   }
+}
+
+println(A.hello)
+```
+
+## Singleton Class
+
+object 키워드를 사용하여 싱글톤 만들 수 있다.
+```kt
+object SingleClass {
+
+}
+
+val s = SingleClass()
+```
+
+## 고차함수
+
+일급객체(first class)로 함수가 일반 객체와 같이 취급된다.  
+변수에 할당될 수 있고 다른 함수의 매개변수로 전달 또는 반환 할 수 있다
+
+```kt
+fun runThis(f: (String, Int) -> Strin): String {
+  return f("Hello", 100)
+}
+
+class Something : (String, Int) -> String {
+    override operator fun invoke(str: String, num: Int): String {
+        return mutableListOf<String>().apply {
+            repeat(num) {
+                this.add(str)
+            }
+
+        }.joinToString(separator = ",")
+    }
+}
+
+val something: (String, Int) -> String = Something()
+
+```
+위 코드는  String과 Int를 매개변수로 받고 String를 반환하는 f라는 함수를 매개로 받는다
+
+### Receivers
 
 ```kt
 class Car(val horsepowers: Int)
@@ -213,16 +339,6 @@ val car = Car(120)
 println(car.boast())
 ```
 
-
-## [Scoped 함수]
-
-Closeable 인터페이스를 구현한 경우 안전하게 use를 사용해서 리소스를 close할 수 있다.  
-```kt
-File("/home/aasmund/test.txt").inputStream().use {
-     val bytes = it.readBytes()
-     println(bytes.size)
-}
-```
 
 ## [Java와 함께 쓰기](https://kotlinlang.org/docs/reference/java-to-kotlin-interop.html)
 
