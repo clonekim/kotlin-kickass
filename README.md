@@ -122,7 +122,7 @@ var num:Any = 100
 num = "hello" //ok
 ```
 
-> val
+> val  
 val로 선언시 읽기전용이 된다.  java의 final과 같다
 
 
