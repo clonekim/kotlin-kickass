@@ -270,6 +270,24 @@ class A(private val a:Int, private val b:Int) {
 }
 
 ```
+### open 키워드
+
+open를 사용하면 해당 클래스를 상속 받을 수 있다  
+표현식은 클래스 나 인터페이스나 상관없이 같다
+
+```kotlin
+open class A {
+
+}
+
+class B: A() {
+}
+
+class C: Runnable {
+  override fun run() {
+  }
+}
+```
 
 ## Data Class
 data 클래스를 사용하면 부가적으로 아래의 일 처리한다
@@ -326,7 +344,7 @@ class Something : (String, Int) -> String {
 val something: (String, Int) -> String = Something()
 
 ```
-위 코드는  String과 Int를 매개변수로 받고 String를 반환하는 f라는 함수를 매개로 받는다
+위 코드는  String과 Int를 매개변수로 받고 String를 반환하는 f라는 함수를 파라미터로 받는다
 
 ### Receivers
 
