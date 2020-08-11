@@ -1,0 +1,49 @@
+logging:
+  level:
+    web: DEBUG
+    apm: DEBUG
+    org.xnio: WARN
+    org.jboss: WARN
+    io.undertow: WARN
+
+server:
+  port: 8000
+spring:
+  profiles:
+    active: ${profile:dev}
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  executorType: SIMPLE
+  lazyInitialization: true
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 500
+    default-statement-timeout: 30
+    call-setters-on-nulls: true
+
+graphql:
+  spqr:
+    http:
+      endpoint: /api/graphql
+    gui:
+      enabled: false
+
+---
+spring:
+  profiles: dev
+  datasource:
+    driverClassName: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@//10.1.1.11/SALES
+    username: hello
+    password: yourpassword
+    hikari:
+      connectionInitSql: ALTER SESSION SET TIME_ZONE='+9:00'
+  cipher:
+    endpoint: http://cipherprd.koreanair.com/SafeNetServiceAxis2/DataProtectionService
+#    keystore: classpath:keystore.jks
+#    password: changeitselxwmo
+  jwt:
+    secret: secret
+    issuer: koreanair
+    ttl: 1d
