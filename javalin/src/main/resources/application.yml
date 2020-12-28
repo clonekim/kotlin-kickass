@@ -1,0 +1,8 @@
+server:
+  port: 7000
+
+datasource:
+  driverClassName: org.mariadb.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/todos
+  username: root
+  password: secret
